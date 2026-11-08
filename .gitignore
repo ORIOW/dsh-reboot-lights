@@ -1,0 +1,8 @@
+# macOS
+.DS_Store
+
+# Node
+node_modules/
+
+# Runtime artifacts (generated on the user's machine)
+user_reboot_SOP.md

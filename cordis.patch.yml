@@ -1,0 +1,4 @@
+# dsh-reboot-lights — 重启安全红绿灯
+- insert:
+    - id: reboot-lights
+      name: dsh-reboot-lights
