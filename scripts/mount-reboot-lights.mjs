@@ -3,9 +3,8 @@
  * 把 dsh-reboot-lights 挂进 DSH profile（M0 挂载步骤）。
  *
  * 为什么需要单独一个脚本：DSH_HOME 不在会话沙箱可写范围内，
- * 所以挂载必须在提权下执行。本脚本与
- * `/Users/dengjiawei/Documents/work/dsh-plugin-develop/make zcode plugin/scripts/mount-zcode-native.mjs`
- * 同构，可直接对照。
+ * 所以挂载必须在提权下执行。本脚本与 `make zcode plugin` 仓库的
+ * mount-zcode-native.mjs 同构，可直接对照。
  *
  * 做的事（幂等，可重复跑）：
  *   1. 备份 profiles/web/package.json 与 cordis.patch.yml
@@ -21,12 +20,12 @@
  */
 
 import { readFileSync, writeFileSync, existsSync, mkdirSync, symlinkSync, unlinkSync, realpathSync, copyFileSync } from 'node:fs'
-import { join } from 'node:path'
+import { join, dirname } from 'node:path'
 import { homedir } from 'node:os'
 import { spawnSync } from 'node:child_process'
 
 const APPLY = process.argv.includes('--apply')
-const WORKSPACE = '/Users/dengjiawei/Documents/work/dsh-plugin-develop/reboot lights'
+const WORKSPACE = dirname(import.meta.dirname)
 const PKG_NAME = 'dsh-reboot-lights'
 const DSH_HOME = process.env.DSH_HOME ?? join(homedir(), 'Library', 'Application Support', 'dsh-desktop', 'harness')
 const PROFILE = join(DSH_HOME, 'profiles', 'web')
